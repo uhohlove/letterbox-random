@@ -4,7 +4,7 @@ import random
 import streamlit as st
 
 st.title("Letterboxd Random Movie Gen")
-
+st.header("Leave list box empty for user's watchlist")
 username = st.text_input("Enter Letterboxd username: ")
 list = st.text_input("Enter the list name (copy after /list/ in url): ")
 
