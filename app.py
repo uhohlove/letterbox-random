@@ -1,5 +1,5 @@
 from letterboxdpy.list import List
-from letterboxdpy.watchlist import user_watchlist
+from letterboxdpy.watchlist import Watchlist
 import random
 import streamlit as st
 
@@ -28,7 +28,7 @@ if st.button("Random Movie"):
     elif username and not list:
         try:
             with st.spinner(f"Grabbing movies from {username}'s watchlist..."):
-                watchlist_instance = user_watchlist(username)
+                watchlist_instance = Watchlist(username)
                 movie_list = []
                 for movie_id, movie in watchlist_instance.movies.items():
                     if "name" in movie:
