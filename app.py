@@ -1,4 +1,5 @@
 from letterboxdpy.list import List
+from letterboxdpy.watchlist import user_watchlist
 import random
 import streamlit as st
 
@@ -22,6 +23,22 @@ if st.button("Random Movie"):
                 st.success(f"Selected Movie: {selected_movie}")
             else:
                 st.warning("Couldn't find movies/list")
+        except Exception as e:
+            st.error(f"Error grabbing list: {e}")
+    elif username and not list:
+        try:
+            with st.spinner(f"Grabbing movies from {username}'s watchlist..."):
+                watchlist_instance = user_watchlist(username)
+                movie_list = []
+                for movie_id, movie in watchlist_instance.movies.items():
+                    if "name" in movie:
+                        title_year = f"{movie['name']} ({movie.get('year', 'N/A')})"
+                        movie_list.append(title_year)
+            if len(movie_list) > 0:
+                            selected_movie = random.choice(movie_list)
+                            st.success(f"Selected Movie: {selected_movie}")
+            else:
+                            st.warning("Couldn't find movies/list")
         except Exception as e:
             st.error(f"Error grabbing list: {e}")
     else: 
