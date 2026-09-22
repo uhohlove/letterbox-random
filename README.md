@@ -1,0 +1,1 @@
+simple list reader and random movie gen for Letterboxd
