@@ -66,8 +66,13 @@ def genre_list_grabber(target_genre):
                                 if target_genre in match_genres:
                                     movie_list.append({"name": title, "slug": slug})
                         except Exception: continue
+            if (len(movie_list) > 0):
+                selected_movie = random.choice(movie_list)
+                st.success(f"Selected Movie: {selected_movie}")
+            else:
+                st.warning("Couldn't find movies/list")
         except Exception as e:
-            st.Error(f"Error grabbing watchlist")
+            st.Error(f"Error grabbing list")
 
 if st.button("Random Movie"):
     if username and list:
