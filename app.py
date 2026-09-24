@@ -44,7 +44,7 @@ def watchlist_grabber():
         except Exception as e:
             st.error(f"Error grabbing watchlist for user: {username}")
 
-def genre_list_grabber(username, list, target_genre):
+def genre_list_grabber(target_genre):
         try:
             with st.spinner(f"Grabbing {target_genre} movies from {username}'s list"):
                 list_instance = List(username, list)
