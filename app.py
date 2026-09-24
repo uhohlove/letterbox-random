@@ -17,8 +17,9 @@ def list_grabber():
                 movie_list = []
                 for movie_id, movie in list_instance.movies.items():
                     if "name" in movie:
-                        title_year = f"{movie['name']} ({movie.get('year', 'N/A', 'genre')})"
-                        movie_list.append(title_year)
+                        title_year = f"{movie['name']} ({movie.get('year', 'N/A')})"
+                        genre = movie.get(genre)
+                        movie_list.append(title_year, genre)
             if len(movie_list > 0):
                 selected_movie = random.choice(movie_list)
                 st.success(f"Selected Movie: {selected_movie}")
