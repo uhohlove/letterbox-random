@@ -19,7 +19,7 @@ def list_grabber():
                     if "name" in movie:
                         title_year = f"{movie['name']} ({movie.get('year', 'N/A')})"
                         movie_list.append(title_year)
-            if len(movie_list > 0):
+            if len((movie_list) > 0):
                 selected_movie = random.choice(movie_list)
                 st.success(f"Selected Movie: {selected_movie}")
             else:
@@ -36,7 +36,7 @@ def watchlist_grabber():
                     if "name" in movie:
                         title_year = f"{movie['name']} ({movie.get('year', 'N/A')})"
                         movie_list.append(title_year)
-            if len(movie_list) > 0:
+            if len((movie_list) > 0):
                 selected_movie = random.choice(movie_list)
                 st.success(f"Selected Movie: {selected_movie}")
             else:
@@ -48,6 +48,6 @@ if st.button("Random Movie"):
     if username and list:
         list_grabber()
     elif username and not list:
-        watchlist_grabber
+        watchlist_grabber()
     else: 
         st.warning("Fill in necessary fields")
