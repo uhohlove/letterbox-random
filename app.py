@@ -44,7 +44,7 @@ def watchlist_grabber():
         except Exception as e:
             st.error(f"Error grabbing watchlist for user: {username}")
 
-def genre_list_grabber(target_genre):
+def genre_list_grabber(username, list, target_genre):
         try:
             with st.spinner(f"Grabbing {target_genre} movies from {username}'s list"):
                 list_instance = List(username, list)
@@ -54,7 +54,6 @@ def genre_list_grabber(target_genre):
                     if "name" in mov and "slug" in mov:
                         title = mov["name"]
                         slug = mov["slug"]
-
                         try:
                             movie_obj = movie.Movie(slug)
                             if hasattr(movie_obj, "genres") and movie_obj.genres:
@@ -63,7 +62,7 @@ def genre_list_grabber(target_genre):
                                     for item in movie_obj.genres
                                     if item.get("type") == "genre"
                                 ]
-                                if target_genre in match_genres:
+                                if target_genre.lower() in match_genres:
                                     movie_list.append({"name": title, "slug": slug})
                         except Exception: continue
             if (len(movie_list) > 0):
@@ -72,7 +71,7 @@ def genre_list_grabber(target_genre):
             else:
                 st.warning("Couldn't find movies/list")
         except Exception as e:
-            st.Error(f"Error grabbing list")
+            st.error(f"Error grabbing list")
 
 if st.button("Random Movie"):
     if username and list:
