@@ -1,6 +1,7 @@
 from letterboxdpy.list import List
 from letterboxdpy.watchlist import Watchlist
 from letterboxdpy.films import get_movies_by_genre
+from letterboxdpy import movie
 import random
 import streamlit as st
 
