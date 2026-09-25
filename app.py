@@ -62,7 +62,7 @@ def genre_list_grabber(target_genre):
                                     for item in movie_obj.genres
                                     if item.get("type") == "genre"
                                 ]
-                                if target_genre.lower() in match_genres:
+                                if "comedy" in match_genres:
                                     movie_list.append({"name": title, "slug": slug})
                         except Exception: continue
             if (len(movie_list) > 0):
